@@ -12,18 +12,26 @@ public class Table {
 	
 	public Table() {
 		super();
-		TableID = UUID.randomUUID();
+		setTableID(UUID.randomUUID());
 	}
 	
 	public Table AddPlayerToTable(Player p)
 	{
-		//TODO: Add a player to the table (should be pretty easy)		
+		this.TablePlayers.add(p);		
 		return this;
 	}
 	
 	public Table RemovePlayerFromTable(Player p)
 	{
-		//TODO: Remove a player from the table
+		this.TablePlayers.remove(p);
 		return this;
+	}
+
+	public UUID getTableID() {
+		return TableID;
+	}
+
+	public void setTableID(UUID tableID) {
+		TableID = tableID;
 	}
 }

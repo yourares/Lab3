@@ -11,31 +11,40 @@ public class Game {
 	private List<Player> GamePlayers = new ArrayList<Player>();
 	
 	public Game(UUID tableID, ArrayList<Player> gameplayers){
-		GamePlayers = gameplayers;
-		TableID = tableID;
+		setGamePlayers(gameplayers);
+		setTableID(tableID);
 		UUID.randomUUID();
-	}
-
-	public List<Player> getGamePlayers() {
-		return GamePlayers;
-	}
-
-	public void setGamePlayers(List<Player> gameplayers) {
-		GamePlayers = gameplayers;
 	}
 
 	public UUID getGameID() {
 		return GameID;
 	}
 
+	public void setGameID(UUID gameID) {
+		GameID = gameID;
+	}
+
 	public UUID getTableID() {
 		return TableID;
 	}
-	
-	public void AddPlayerToGame(Table table, Player player){
-		table.AddPlayerToTable(player);
-		this.GamePlayers.add(player);
-		
+
+	public void setTableID(UUID tableID) {
+		TableID = tableID;
 	}
 
+	public List<Player> getGamePlayers() {
+		return GamePlayers;
+	}
+
+	public void setGamePlayers(List<Player> gamePlayers) {
+		GamePlayers = gamePlayers;
+	}
+	public void AddPlayerToGame(Table table, Player player){
+		table.AddPlayerToTable(player);	
+		this.AddPlayerToGame(table, player);
+    }
+	public void RemovePlayerFromTable(Table table, Player player){
+		table.RemovePlayerFromTable(player);	
+		this.AddPlayerToGame(table, player);
+    }
 }
