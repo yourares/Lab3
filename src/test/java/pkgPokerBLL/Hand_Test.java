@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import PkgException.exhand;
 import pkgPokerEnum.eHandStrength;
 import pkgPokerEnum.eRank;
 import pkgPokerEnum.eSuit;
@@ -38,10 +39,7 @@ public class Hand_Test {
 
 	
 
-	
-	
-	
-	
+
 	@Test
 	public void TestRodyalFlush() {
 		Hand h = new Hand();

@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.UUID;
 
+import PkgException.exhand;
 import pkgPokerEnum.eCardNo;
 import pkgPokerEnum.eHandStrength;
 import pkgPokerEnum.eRank;
@@ -15,6 +16,7 @@ import pkgPokerEnum.eSuit;
 
 public class Hand {
 
+	private static ArrayList<Card> kickers;
 	private UUID HandID;
 	private boolean bIsScored;
 	private HandScore HS;
@@ -115,6 +117,13 @@ public class Hand {
 		return h;
 	}
 
+	public static Hand PickBestHand(ArrayList<Hand> Hands) throws exhand
+	{
+		return BestHand;
+		}
+	
+
+
 	public static boolean isStraight(ArrayList<Card> cards, Card c) {
 		boolean isStraight = false;
 		int iStartCard = (Hand.isAce(cards)) ? eCardNo.SecondCard.getCardNo() : eCardNo.FirstCard.getCardNo();
@@ -214,13 +223,30 @@ public class Hand {
 	}
 	
 	public static boolean isHandFiveOfAKind(Hand h, HandScore hs) {
-
-
+		
 		boolean isHandFiveOfAKind = false;
 
+		int iCount = 0;
+		for (eRank Rank : eRank.values()) {
+			iCount = 0;
+			for (Card c : h.CardsInHand) {
+				if (c.geteRank() == Rank)
+					iCount++;
+			}
 
-		return isHandFiveOfAKind;
-	}
+			if (iCount == 5) {
+				isHandFiveOfAKind = true;
+				break;
+			}
+			if (isHandFiveOfAKind) {
+				hs.setHandStrength(eHandStrength.FourOfAKind);
+				hs.setLoHand(null);
+				hs.setKickers(kickers);
+			}
+
+			return isHandFiveOfAKind;
+		}
+
 
 	public static boolean isHandFourOfAKind(Hand h, HandScore hs) {
 
