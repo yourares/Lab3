@@ -30,4 +30,10 @@ public class Deck {
 
 		return DeckCards.remove(0);
 	}
+	public Deck(int numOfJokers){
+		for(int i = 0;i<numOfJokers ;i++){
+			DeckCards.add(new Card());
+		}
+		Collections.shuffle(DeckCards);
+	}
 }
